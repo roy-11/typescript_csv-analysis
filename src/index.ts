@@ -1,20 +1,21 @@
-import fs from "fs";
+import { CsvFileReader } from "./CsvFileReader";
 
-// read csv
-const matches = fs
-  .readFileSync("original.csv", {
-    encoding: "utf-8",
-  })
-  .split("\n")
-  .map((match) => {
-    return match.split(",");
-  });
+// CSVファイルのパース
+const reader = new CsvFileReader("original.csv");
+reader.read();
 
-// count manUnited wins
+// Enum 勝敗/引き分け
+enum MatchResult {
+  HomeWin = "H",
+  AwayWin = "A",
+  Draw = "D",
+}
+
+// manUnitedの勝ち数カウント
 let manUnitedWins = 0;
-for (const match of matches) {
-  if (match[1] === "Man United" && match[5] === "H") manUnitedWins++;
-  if (match[2] === "Man United" && match[5] === "A") manUnitedWins++;
+for (const match of reader.data) {
+  if (match[1] === "Man United" && match[5] === MatchResult.HomeWin) manUnitedWins++;
+  if (match[2] === "Man United" && match[5] === MatchResult.AwayWin) manUnitedWins++;
 }
 
 console.log(manUnitedWins);
