@@ -1,15 +1,9 @@
 import { CsvFileReader } from "./CsvFileReader";
+import { MatchResult } from "./MatchResult";
 
 // CSVファイルのパース
 const reader = new CsvFileReader("original.csv");
 reader.read();
-
-// Enum 勝敗/引き分け
-enum MatchResult {
-  HomeWin = "H",
-  AwayWin = "A",
-  Draw = "D",
-}
 
 // manUnitedの勝ち数カウント
 let manUnitedWins = 0;
