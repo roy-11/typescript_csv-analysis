@@ -17,7 +17,8 @@ var CsvFileReader = /** @class */ (function () {
             .split("\n")
             .map(function (rows) {
             return rows.split(",");
-        });
+        })
+            .map(this.mapRow);
     };
     return CsvFileReader;
 }());
