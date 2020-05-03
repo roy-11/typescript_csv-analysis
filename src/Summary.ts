@@ -5,7 +5,7 @@ export interface Analyzer {
 }
 
 export interface OutputTarget {
-  pring(report: string): void;
+  print(report: string): void;
 }
 
 export class Summary {
